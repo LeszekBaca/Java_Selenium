@@ -14,10 +14,6 @@ public class AtmsKids {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     public String getFifthDotUrl() {
         return fifthDotUrl;
     }

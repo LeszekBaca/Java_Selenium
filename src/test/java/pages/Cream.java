@@ -14,10 +14,6 @@ public class Cream {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     public String getSixthDotUrl() {
         return sixthDotUrl;
     }

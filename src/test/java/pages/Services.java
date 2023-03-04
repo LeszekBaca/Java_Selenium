@@ -14,10 +14,6 @@ public class Services {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     public String getThirdDotUrl() {
         return thirdDotUrl;
     }

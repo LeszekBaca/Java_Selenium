@@ -14,10 +14,6 @@ public class AtmsWatch {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     public String getFourthDotUrl() {
         return fourthDotUrl;
     }

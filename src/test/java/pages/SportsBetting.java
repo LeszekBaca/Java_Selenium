@@ -14,10 +14,6 @@ public class SportsBetting {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     public String getSecondDotUrl() {
         return secondDotUrl;
     }

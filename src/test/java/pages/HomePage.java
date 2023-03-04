@@ -22,5 +22,11 @@ public class HomePage {
         return driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='"+dotNumber+"']"));
     }
 
+    public WebElement servicesTab(){
+        return driver.findElement(By.xpath("//a[@href='https://www.alan-systems.com/pl/uslugi/' and text()='USŁUGI ']"));
+    }
 
+    public WebElement servicesDropListSoftwareTesting(){
+        return driver.findElement(By.xpath("//ul[@class='dropdown-menu']/li[@class='menu-item menu-item-type-post_type menu-item-object-page menu-item-9975']"));
+    }
 }

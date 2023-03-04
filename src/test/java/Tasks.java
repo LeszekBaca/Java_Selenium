@@ -23,6 +23,7 @@ public class Tasks {
     private Cream cream = new Cream(driver);
     private Services services = new Services(driver);
     private SportsBetting sportsBetting = new SportsBetting(driver);
+    private SoftwareTesting softwareTesting = new SoftwareTesting(driver);
 
     @BeforeClass
     public void setUp() {
@@ -30,7 +31,7 @@ public class Tasks {
     }
 
     @Test
-    public void taskFirst() throws Exception {
+    public void checkingDotsOnMainPageTest() throws Exception {
         driver.get(homePage.getBaseUrl());
 
         for (int i = 0; i < 6; i++) {
@@ -81,66 +82,63 @@ public class Tasks {
     }
 
     @Test
-    public void taskSecond() throws Exception {
+    public void customerSendFormTest() throws Exception {
         driver.get(homePage.getBaseUrl());
         Thread.sleep(1000);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Actions action = new Actions(driver);
-        WebElement ele = driver.findElement(By.xpath("//a[@href='https://www.alan-systems.com/pl/uslugi/' and text()='USŁUGI ']"));
 
-        WebElement text = driver.findElement(By.xpath("//ul[@class='dropdown-menu']/li[@class='menu-item menu-item-type-post_type menu-item-object-page menu-item-9975']"));
-
-        action.moveToElement(ele).perform();
-        Thread.sleep(2000);
-        text.click();
+        action.moveToElement(homePage.servicesTab()).perform();
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        homePage.servicesDropListSoftwareTesting().click();
         js.executeScript("window.scrollBy(0,1500)");
 
-        String name = driver.findElement(By.xpath("//input[@type=\"text\" and @name='your-name']")).getAttribute("placeholder");
-
-        if ("Twoje imię i nazwisko *".equals(name)) {
+        if (softwareTesting.getNameAndSurname()
+                .equals(softwareTesting.nameAndSurname().getAttribute(softwareTesting.getPlaceholder()))) {
             System.out.println("Element \"Twoje imię i nazwisko *\" exists");
         } else {
             System.out.println("Element \"Twoje imię i nazwisko *\" does not exist");
         }
 
+        Assert.assertEquals(softwareTesting.nameAndSurname().getAttribute(softwareTesting.getPlaceholder()),
+                softwareTesting.getNameAndSurname() );
 
-        String email = driver.findElement(By.xpath("//input[@type=\"email\" and @name='your-email']")).getAttribute("placeholder");
-
-        if ("Twój email *".equals(email)) {
+        if (softwareTesting.getEmail().equals(softwareTesting.email().getAttribute(softwareTesting.getPlaceholder()))) {
             System.out.println("Element \"Twój email *\" exists");
         } else {
             System.out.println("Element \"Twój email *\" does not exist");
         }
 
+        Assert.assertEquals(softwareTesting.email()
+                .getAttribute(softwareTesting.getPlaceholder()), softwareTesting.getEmail());
 
-        String tel = driver.findElement(By.xpath("//input[@type=\"tel\" and @name='tel-333']")).getAttribute("placeholder");
-
-        if ("Twój numer telefonu".equals(tel)) {
+        if (softwareTesting.getTelephoneNumber()
+                .equals(softwareTesting.telephoneNumber().getAttribute(softwareTesting.getPlaceholder()))) {
             System.out.println("Element \"Twój numer telefonu\" exists");
         } else {
             System.out.println("Element \"Twój numer telefonu\" does not exist");
         }
 
+        Assert.assertEquals(softwareTesting.telephoneNumber().getAttribute(softwareTesting.getPlaceholder()),
+                softwareTesting.getTelephoneNumber() );
 
-        String contact = driver.findElement(By.xpath("//textarea[@class='wpcf7-form-control wpcf7-textarea']")).getAttribute("placeholder");
-
-        if ("Kiedy możemy się z Tobą skontaktować?".equals(contact)) {
+        if (softwareTesting.getContactWithYouQuestion()
+                .equals(softwareTesting.contactWithYouQuestion().getAttribute(softwareTesting.getPlaceholder()))) {
             System.out.println("Element \"Kiedy możemy się z Tobą skontaktować?\" exists");
         } else {
             System.out.println("Element \"Kiedy możemy się z Tobą skontaktować?\" does not exist");
         }
 
+        Assert.assertEquals(softwareTesting.contactWithYouQuestion().getAttribute(softwareTesting.getPlaceholder()),
+                softwareTesting.getContactWithYouQuestion());
 
-        boolean pushbuttonWyslj = driver.findElement(By.xpath("//input[@type=\"submit\" and @value='Wyślij']")).isDisplayed();
-
-        if (pushbuttonWyslj) {
+        if (softwareTesting.sendButton().isDisplayed()) {
             System.out.println("Element \"Wyślij\" is visable");
         } else {
             System.out.println("Element \"Wyślij\" is not visable");
         }
 
-
-        //Thread.sleep(2000);
+        Assert.assertTrue(softwareTesting.sendButton().isDisplayed());
 
     }
 

@@ -14,10 +14,6 @@ public class Career {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     public String getFirstDotUrl() {
         return firstDotUrl;
     }
