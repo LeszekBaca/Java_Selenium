@@ -25,5 +25,4 @@ public class Career {
     public WebElement FindOutMorePushButton(){
         return driver.findElement(By.xpath("//a[@href='/pl/kariera/' and text()='dowiedz się więcej']"));
     }
-    //driver.findElement(By.xpath("//a[@href='/pl/kariera/' and text()='dowiedz się więcej']")).click();
 }
