@@ -35,7 +35,7 @@ public class Tasks {
 
         for (int i = 0; i < 6; i++) {
             driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            homePage.Dot(i).click();
+            homePage.dot(i).click();
             Thread.sleep(2000);
 
             switch (i) {

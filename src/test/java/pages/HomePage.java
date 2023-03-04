@@ -26,7 +26,7 @@ public class HomePage {
         return baseUrl;
     }
 
-    public WebElement Dot(int dotNumber){
+    public WebElement dot(int dotNumber){
         return driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='"+dotNumber+"']"));
     }
 
