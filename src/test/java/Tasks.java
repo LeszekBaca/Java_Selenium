@@ -17,114 +17,67 @@ public class Tasks {
 
     private WebDriver driver = new ChromeDriver();
     private HomePage homePage = new HomePage(driver);
-
     private AtmsKids atmsKids = new AtmsKids(driver);
-
     private AtmsWatch atmsWatch = new AtmsWatch(driver);
-
     private Career career = new Career(driver);
-
     private Cream cream = new Cream(driver);
-
     private Services services = new Services(driver);
-
     private SportsBetting sportsBetting = new SportsBetting(driver);
-
-
-    //private String baseUrl;
 
     @BeforeClass
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-
     }
 
     @Test
     public void taskFirst() throws Exception {
-
-        driver.get(homePage.getBaseUrl());
-        //HomePage homePage = new HomePage(driver);
-//        String firstRedirect = "https://www.alan-systems.com/pl/kariera/";
-//        String secondRedirect = "https://www.alan-systems.com/pl/zaklady-sportowe/";
-//        String thirdRedirect = "https://www.alan-systems.com/pl/uslugi/";
-//        String fourthRedirect = "https://www.alan-systems.com/pl/atms-watch/";
-//        String fifthRedirect = "https://www.alan-systems.com/pl/atms-kids/";
-//        String sixthRedirect = "https://www.alan-systems.com/pl/cream/";
-
-
-
-
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        homePage.Dot(0).click();
-        //driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='0']")).click();
-        //driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        Thread.sleep(2000);
-        career.FindOutMorePushButton().click();
-        //driver.findElement(By.xpath("//a[@href='/pl/kariera/' and text()='dowiedz się więcej']")).click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        Assert.assertEquals(driver.getCurrentUrl(), career.getFirstDotUrl());
         driver.get(homePage.getBaseUrl());
 
+        for (int i = 0; i < 6; i++) {
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            homePage.Dot(i).click();
+            Thread.sleep(2000);
 
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        //driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='1']")).click();
-        homePage.Dot(1).click();
-        //driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        Thread.sleep(2000);
-        sportsBetting.FindOutMorePushButton().click();
-        //driver.findElement(By.xpath("//a[@href='/pl/zaklady-sportowe/' and text()='zobacz więcej']")).click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        Assert.assertEquals(driver.getCurrentUrl(), sportsBetting.getSecondDotUrl());
-        driver.get(homePage.getBaseUrl());
-
-
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        //driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='2']")).click();
-        homePage.Dot(2).click();
-        //driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        Thread.sleep(2000);
-        services.FindOutMorePushButton().click();
-        //driver.findElement(By.xpath("//a[@href='/pl/uslugi/' and @class='btn-transparent' and text()='zobacz więcej']")).click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        //System.out.println(driver.getCurrentUrl());
-        //System.out.println(services.getThirdDotUrl());
-        Assert.assertEquals(driver.getCurrentUrl(), services.getThirdDotUrl());
-        driver.get(homePage.getBaseUrl());
-
-
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        //driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='3']")).click();
-        homePage.Dot(3).click();
-        Thread.sleep(2000);
-        atmsWatch.FindOutMorePushButton().click();
-        //driver.findElement(By.xpath("//a[@href='/pl/atms-watch/' and @class='btn-transparent' and text()='zobacz więcej']")).click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        Assert.assertEquals(driver.getCurrentUrl(), atmsWatch.getFourthDotUrl());
-        driver.get(homePage.getBaseUrl());
-
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        //driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='4']")).click();
-        homePage.Dot(4).click();
-        Thread.sleep(2000);
-        atmsKids.FindOutMorePushButton().click();
-        //driver.findElement(By.xpath("//a[@href='/pl/atms-kids/' and @class='btn-transparent' and text()='zobacz więcej']")).click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        Assert.assertEquals(driver.getCurrentUrl(), atmsKids.getFifthDotUrl());
-        driver.get(homePage.getBaseUrl());
-
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        //driver.findElement(By.xpath("//ol[contains(@class,'carousel-indicators')]/li[@data-slide-to='5']")).click();
-        homePage.Dot(5).click();
-        Thread.sleep(2000);
-        cream.FindOutMorePushButton().click();
-        //driver.findElement(By.xpath("//a[@href='/pl/cream/' and @class='btn-transparent' and text()='zobacz więcej']")).click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        Assert.assertEquals(driver.getCurrentUrl(), cream.getSixthDotUrl());
-        driver.get(homePage.getBaseUrl());
-
-        //Thread.sleep(2000);
-
-
+            switch (i) {
+                case 0: {
+                    career.FindOutMorePushButton().click();
+                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+                    Assert.assertEquals(driver.getCurrentUrl(), career.getFirstDotUrl());
+                    break;
+                }
+                case 1: {
+                    sportsBetting.FindOutMorePushButton().click();
+                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+                    Assert.assertEquals(driver.getCurrentUrl(), sportsBetting.getSecondDotUrl());
+                    break;
+                }
+                case 2: {
+                    services.FindOutMorePushButton().click();
+                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+                    Assert.assertEquals(driver.getCurrentUrl(), services.getThirdDotUrl());
+                    break;
+                }
+                case 3: {
+                    atmsWatch.FindOutMorePushButton().click();
+                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+                    Assert.assertEquals(driver.getCurrentUrl(), atmsWatch.getFourthDotUrl());
+                    break;
+                }
+                case 4: {
+                    atmsKids.FindOutMorePushButton().click();
+                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+                    Assert.assertEquals(driver.getCurrentUrl(), atmsKids.getFifthDotUrl());
+                    break;
+                }
+                case 5: {
+                    cream.FindOutMorePushButton().click();
+                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+                    Assert.assertEquals(driver.getCurrentUrl(), cream.getSixthDotUrl());
+                    break;
+                }
+            }
+            driver.get(homePage.getBaseUrl());
+        }
     }
 
     @Test
