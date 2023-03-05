@@ -1,3 +1,5 @@
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,8 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 
 public class Tasks {
@@ -25,6 +26,8 @@ public class Tasks {
     private SportsBetting sportsBetting = new SportsBetting(driver);
     private SoftwareTesting softwareTesting = new SoftwareTesting(driver);
 
+    private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
     @BeforeClass
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
@@ -35,44 +38,43 @@ public class Tasks {
         driver.get(homePage.getBaseUrl());
 
         for (int i = 0; i < 6; i++) {
-            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            wait.until(ExpectedConditions.elementToBeClickable(homePage.dot(i)));
             homePage.dot(i).click();
-            Thread.sleep(2000);
 
             switch (i) {
                 case 0: {
+                    wait.until(ExpectedConditions.elementToBeClickable(career.FindOutMorePushButton()));
                     career.FindOutMorePushButton().click();
-                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
                     Assert.assertEquals(driver.getCurrentUrl(), career.getFirstDotUrl());
                     break;
                 }
                 case 1: {
+                    wait.until(ExpectedConditions.elementToBeClickable(sportsBetting.FindOutMorePushButton()));
                     sportsBetting.FindOutMorePushButton().click();
-                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
                     Assert.assertEquals(driver.getCurrentUrl(), sportsBetting.getSecondDotUrl());
                     break;
                 }
                 case 2: {
+                    wait.until(ExpectedConditions.elementToBeClickable(services.FindOutMorePushButton()));
                     services.FindOutMorePushButton().click();
-                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
                     Assert.assertEquals(driver.getCurrentUrl(), services.getThirdDotUrl());
                     break;
                 }
                 case 3: {
+                    wait.until(ExpectedConditions.elementToBeClickable(atmsWatch.FindOutMorePushButton()));
                     atmsWatch.FindOutMorePushButton().click();
-                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
                     Assert.assertEquals(driver.getCurrentUrl(), atmsWatch.getFourthDotUrl());
                     break;
                 }
                 case 4: {
+                    wait.until(ExpectedConditions.elementToBeClickable(atmsKids.FindOutMorePushButton()));
                     atmsKids.FindOutMorePushButton().click();
-                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
                     Assert.assertEquals(driver.getCurrentUrl(), atmsKids.getFifthDotUrl());
                     break;
                 }
                 case 5: {
+                    wait.until(ExpectedConditions.elementToBeClickable(cream.FindOutMorePushButton()));
                     cream.FindOutMorePushButton().click();
-                    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
                     Assert.assertEquals(driver.getCurrentUrl(), cream.getSixthDotUrl());
                     break;
                 }
@@ -89,7 +91,7 @@ public class Tasks {
         Actions action = new Actions(driver);
 
         action.moveToElement(homePage.servicesTab()).perform();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.elementToBeClickable(homePage.servicesDropListSoftwareTesting()));
         homePage.servicesDropListSoftwareTesting().click();
         js.executeScript("window.scrollBy(0,1500)");
 
