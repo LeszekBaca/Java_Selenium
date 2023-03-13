@@ -1,34 +1,44 @@
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
 import pages.*;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import java.time.Duration;
 
 
 public class Tasks {
 
-    private WebDriver driver = new ChromeDriver();
-    private HomePage homePage = new HomePage(driver);
-    private AtmsKids atmsKids = new AtmsKids(driver);
-    private AtmsWatch atmsWatch = new AtmsWatch(driver);
-    private Career career = new Career(driver);
-    private Cream cream = new Cream(driver);
-    private Services services = new Services(driver);
-    private SportsBetting sportsBetting = new SportsBetting(driver);
-    private SoftwareTesting softwareTesting = new SoftwareTesting(driver);
-
-    private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+    private ChromeDriver driver;
+    private HomePage homePage;
+    private AtmsKids atmsKids;
+    private AtmsWatch atmsWatch;
+    private Career career;
+    private Cream cream;
+    private Services services;
+    private SportsBetting sportsBetting;
+    private SoftwareTesting softwareTesting;
+    private WebDriverWait wait;
 
     @BeforeClass
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        driver = new ChromeDriver(options);
+        homePage = new HomePage(driver);
+        atmsKids = new AtmsKids(driver);
+        atmsWatch = new AtmsWatch(driver);
+        career = new Career(driver);
+        cream = new Cream(driver);
+        services = new Services(driver);
+        sportsBetting = new SportsBetting(driver);
+        softwareTesting = new SoftwareTesting(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
     @Test
@@ -84,7 +94,6 @@ public class Tasks {
     @Test
     public void customerSendFormTest() throws Exception {
         driver.get(homePage.getBaseUrl());
-        Thread.sleep(1000);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Actions action = new Actions(driver);
 
@@ -144,7 +153,7 @@ public class Tasks {
 
     @AfterClass
     public void tearDown() {
+        //driver.close();
         driver.quit();
-
     }
 }
