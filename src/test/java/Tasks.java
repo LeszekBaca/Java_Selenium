@@ -153,7 +153,6 @@ public class Tasks {
 
     @AfterClass
     public void tearDown() {
-        //driver.close();
         driver.quit();
     }
 }
